@@ -9,28 +9,34 @@
 
 namespace genetic {
 
-	template<typename T>
+	template<typename _Tcontainer>
 	class genetic_code {
-		static_assert(std::is_integral<T>::value, 
+		static_assert(std::is_integral<_Tcontainer>::value, 
 			"Template should be specialized by unsigned integer type");
-		static_assert(std::is_unsigned<T>::value, 
+		static_assert(std::is_unsigned<_Tcontainer>::value,
 			"Template should be specialized by unsigned integer type");
-		static_assert(!std::is_same<T, bool>::value, 
+		static_assert(!std::is_same<_Tcontainer, bool>::value,
 			"Template should be specialized by unsigned integer type. Not bool");
 
 	public:
-		typedef typename T target_type;
+		typedef typename _Tcontainer container_t;
+		typedef typename size_t codesize_t;
+		typedef typename primitive::nucleotide<container_t> nucleotide_t;
 
-		genetic_code(const target_type& size) :
-			m_size(size)
+		genetic_code(const codesize_t &codeSize) :
+			codeSize_(codeSize)
 		{};
 
-		virtual std::unique_ptr< primitive::nucleotide<T> > at(const point_number &point_number) = 0;
+		virtual std::unique_ptr<nucleotide_t> at(const codesize_t &index) = 0;
+
+		inline codesize_t codesize() {
+			return codeSize_;
+		};
 
 	protected:
-		target_type m_size;
+		
 
 	private:
-
+		codesize_t codeSize_;
 	};
 };

@@ -21,5 +21,8 @@
     <ClInclude Include="wide_code.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bit_code.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

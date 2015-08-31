@@ -13,15 +13,19 @@ namespace genetic {
 		public:
 			typedef typename _Tstorage	storage_type;
 			typedef typename _Tsource	source_type;
+			typedef typename size_t		codesize_t;
 
-			genetic_encoder()
+
+
+			genetic_encoder(const codesize_t &codeSize) :
+				mCodeSize(codeSize)
 			{};
 
-			virtual void encode() = 0;
-			virtual void decode() = 0;
+			virtual storage_type encode(const source_type &point) = 0;
+			virtual source_type	decode(const storage_type &code) = 0;
 
 		private:
-			storage_type code;
+			codesize_t mCodeSize;
 		};
 	}; //-- namespace encoding --
 }; //-- namespace genetic --
