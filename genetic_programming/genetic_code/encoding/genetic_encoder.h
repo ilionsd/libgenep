@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cmath>
+#include <vector>
 #include <type_traits>
 
 #include "../genetic_code.h"
@@ -9,23 +11,39 @@ namespace genetic {
 		template<typename _Tsource, typename _Tstorage>
 		class genetic_encoder {
 			static_assert(std::is_base_of<genetic_code, _Tstorage>::value,
-				"");
+				"Storage should be derived from " + typeid(genetic_code).name());
+			
 		public:
-			typedef typename _Tstorage	storage_type;
-			typedef typename _Tsource	source_type;
-			typedef typename size_t		codesize_t;
+			typedef typename _Tstorage								storage_t;
+			typedef typename _Tsource								source_t;
+			typedef typename storage_t::container_t					container_t;
+			typedef typename genetic_code<container_t>::codesize_t	codesize_t;
 
-
-
-			genetic_encoder(const codesize_t &codeSize) :
-				mCodeSize(codeSize)
+			inline genetic_encoder(const codesize_t &codeSize, const int &spaceSize) :
+				mCodeSize_(codeSize), mSpaceSize_(spaceSize)
 			{};
+			inline genetic_encoder(const source_t &points_number, , const int &spaceSize) :
+				genetic_encoder(get_code_size(points_number), spaceSize)
+			{};
+			codesize_t code_size() {
+				return mCodeSize_;
+			};
+			int space_size() {
+				return mSpaceSize_;
+			};
 
-			virtual storage_type encode(const source_type &point) = 0;
-			virtual source_type	decode(const storage_type &code) = 0;
+			virtual storage_t encode(const std::vector<source_t> &point) const = 0;
+			virtual std::vector<source_t> decode(const storage_t &code) const = 0;
 
 		private:
-			codesize_t mCodeSize;
+			inline static codesize_t get_code_size(const source_t &points_number) {
+				return static_cast<codesize_t>(ceil(log(points_number)));
+			};
+
+			codesize_t mCodeSize_;
+			int mSpaceSize_;
+
+
 		};
 	}; //-- namespace encoding --
 }; //-- namespace genetic --

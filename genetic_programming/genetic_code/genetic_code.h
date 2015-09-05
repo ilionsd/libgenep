@@ -2,8 +2,8 @@
 
 #include <vector>
 #include <memory>
-#include <type_traits>
 
+#include "../genetic_traits/genetic_traits.h"
 #include "../nucleotide/nucleotide.h"
 
 
@@ -11,12 +11,8 @@ namespace genetic {
 
 	template<typename _Tcontainer>
 	class genetic_code {
-		static_assert(std::is_integral<_Tcontainer>::value, 
+		static_assert(is_container<_Tcontainer>::value, 
 			"Template should be specialized by unsigned integer type");
-		static_assert(std::is_unsigned<_Tcontainer>::value,
-			"Template should be specialized by unsigned integer type");
-		static_assert(!std::is_same<_Tcontainer, bool>::value,
-			"Template should be specialized by unsigned integer type. Not bool");
 
 	public:
 		typedef typename _Tcontainer container_t;
