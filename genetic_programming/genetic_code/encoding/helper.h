@@ -5,8 +5,7 @@
 namespace genetic {
 	namespace encoding {
 		template<typename T>
-		static struct helper {
-		public:
+		struct helper {
 			template<int base>
 			static std::vector<T> pow_vector(const int &power) {
 				std::vector<T> powers(power + 1);

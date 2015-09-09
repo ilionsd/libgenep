@@ -25,8 +25,7 @@ namespace genetic {
 				typename codesize_t nucleotideIndex = 0;
 				for (int spaceSizeIndex = 0; spaceSizeIndex < space_size(); ++spaceSizeIndex) {
 					div = points.at(spaceSizeIndex);
-					prevRem = div % 2;
-					div /= 2;
+					prevRem = 0;
 					while (div != 0) {
 						nextRem = div % 2;
 						div /= 2;
@@ -43,8 +42,10 @@ namespace genetic {
 				for (int spaceSizeIndex = 0; spaceSizeIndex < space_size(); ++spaceSizeIndex) {
 					typename codesize_t lastIndex = code_size() * (spaceSizeIndex + 1) - 1;
 					typename source_t point = 0;
+					char xorSum = 0;
 					for (ptrdiff_t shiftNucleotideIndex = 0; shiftNucleotideIndex < code_size(); ++shiftNucleotideIndex) {
-						point += code.at(lastIndex - shiftNucleotideIndex) * power_list.at(code_size() - shiftNucleotideIndex);
+						xorSum ^= code.at(lastIndex - shiftNucleotideIndex);
+						point += xorSum * power_list.at(code_size() - shiftNucleotideIndex);
 					}
 					points.at(spaceSizeIndex) = point;
 				}

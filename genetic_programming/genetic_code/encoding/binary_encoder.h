@@ -14,7 +14,7 @@ namespace genetic {
 			inline binary_encoder(const codesize_t &codeSize, const int &spaceSize) :
 				genetic_encoder(codeSize, spaceSize)
 			{};
-			inline binary_encoder(const source_t &points_number, , const int &spaceSize) :
+			inline binary_encoder(const source_t &points_number, const int &spaceSize) :
 				genetic_encoder(points_number, spaceSize)
 			{};
 
@@ -41,7 +41,7 @@ namespace genetic {
 				for (int spaceSizeIndex = 0; spaceSizeIndex < space_size(); ++spaceSizeIndex) {
 					typename source_t point = 0;
 					for (size_t codeSizeIndex = 0; codeSizeIndex < code_size(); ++codeSizeIndex) {
-						point += code.at(nucleotideIndex) * power_list.at(codeSizeIndex);
+						point += code.at(nucleotideIndex). * power_list.at(codeSizeIndex);
 					}
 					points.at(spaceSizeIndex) = point;
 				}

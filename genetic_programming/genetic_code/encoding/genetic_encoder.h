@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <vector>
+#include <cstdlib>
 #include <type_traits>
 
 #include "../genetic_code.h"
@@ -10,8 +11,8 @@ namespace genetic {
 	namespace encoding {
 		template<typename _Tsource, typename _Tstorage>
 		class genetic_encoder {
-			static_assert(std::is_base_of<genetic_code, _Tstorage>::value,
-				"Storage should be derived from " + typeid(genetic_code).name());
+			static_assert(genetic::is_base_of_template_t<genetic_code, _Tstorage>::value,
+				"Storage should be derived from genetic_code");
 			
 		public:
 			typedef typename _Tstorage								storage_t;
@@ -22,13 +23,13 @@ namespace genetic {
 			inline genetic_encoder(const codesize_t &codeSize, const int &spaceSize) :
 				mCodeSize_(codeSize), mSpaceSize_(spaceSize)
 			{};
-			inline genetic_encoder(const source_t &points_number, , const int &spaceSize) :
+			inline genetic_encoder(const source_t &points_number, const int &spaceSize) :
 				genetic_encoder(get_code_size(points_number), spaceSize)
 			{};
-			codesize_t code_size() {
+			codesize_t code_size() const {
 				return mCodeSize_;
 			};
-			int space_size() {
+			int space_size() const {
 				return mSpaceSize_;
 			};
 

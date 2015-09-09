@@ -12,7 +12,7 @@ namespace genetic {
 		class wide_code : public genetic_code < _Tcontainer > {
 		public:
 			typedef typename genetic_code<_Tcontainer> base_t;
-			typedef typename primitive::wide_nucleotide<base_t::container_t> nucleotide_t;
+			typedef typename primitive::wide_nucleotide<typename base_t::container_t> nucleotide_t;
 
 			wide_code(const base_t::codesize_t& codeSize) :
 				genetic_code(codeSize), code_(codeSize)
@@ -25,7 +25,7 @@ namespace genetic {
 			};
 
 		private:
-			std::vector<base_t::container_t> code_;
+			std::vector<typename base_t::container_t> code_;
 		};
 	};
 };
