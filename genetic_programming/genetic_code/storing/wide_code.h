@@ -2,8 +2,9 @@
 
 #include <memory>
 #include <vector>
+#include <utility>
 
-#include "../genetic_code.h"
+#include "genetic_code.h"
 #include "../../nucleotide/wide_nucleotide.h"
 
 namespace genetic {
@@ -22,6 +23,11 @@ namespace genetic {
 				typename base_t::container_t container = code_.at(index);
 				std::unique_ptr<typename base_t::nucleotide_t> nucleotidePtr(new nucleotide_t(container));
 				return nucleotidePtr;
+			};
+			virtual std::unique_ptr<base_t::nucleotide_t> at(const base_t::codesize_t &index) const override {
+				typename base_t::container_t container = code_.at(index);
+				std::unique_ptr<typename base_t::nucleotide_t> nucleotidePtr(new nucleotide_t(container));
+				return std::move(nucleotidePtr);
 			};
 
 		private:

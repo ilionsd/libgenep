@@ -38,7 +38,7 @@ namespace genetic {
 				}
 			};
 
-			inline operator bitsize_t() {
+			inline operator bitsize_t() const {
 				return m_index;
 			};
 

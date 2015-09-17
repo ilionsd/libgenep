@@ -6,14 +6,14 @@
 namespace genetic {
 	template<typename T>
 	struct is_base_integer {
-		typedef const T type;
-		static const bool value = std::is_integral<type>::value && !std::is_same<type, bool>::value;
+		typedef const T value_type;
+		static const bool value = std::is_integral<value_type>::value && !std::is_same<value_type, bool>::value;
 	};
 
 	template<typename T>
 	struct is_container {
-		typedef const T type;
-		static const bool value = is_base_integer<type>::value && std::is_unsigned<T>::value;
+		typedef const T value_type;
+		static const bool value = is_base_integer<value_type>::value && std::is_unsigned<value_type>::value;
 	};
 
 	template<typename T>
@@ -48,7 +48,7 @@ namespace genetic {
 	template <template <typename...> class Base, typename Derived>
 	struct is_base_of_template
 	{
-		using U = typename std::remove_cv<typename std::remove_reference<Derived>::type>::type;
+		using U = typename std::remove_cv<Derived>::type;
 
 		template <typename... Args>
 		static std::true_type test(Base<Args...>*);

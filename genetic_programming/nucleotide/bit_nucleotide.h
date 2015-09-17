@@ -18,13 +18,17 @@ namespace genetic {
 		/// <seealso cref="bit_index{T}"/>
 		template<typename _Tcontainer>
 		class bit_nucleotide : public nucleotide<_Tcontainer> {
-			friend class genetic_code<_Tcontainer>;
 		public:
 			typedef typename nucleotide<_Tcontainer> base_t;
 			typedef typename bit_index<typename base_t::container_t> bit_index_t;
 
+			bit_nucleotide(typename base_t::container_t &nucleotide, const typename bit_index_t &index) :
+				pValue_(&nucleotide), mIndex_(index)
+			{}; //-- redundant check --
+				// *p_value = nucleotide_type<T>::cast(*p_value);
+
 			virtual typename base_t::nucleotide_type_t get() const {
-				typename base_t::container_t mask = 1 << mIndex_;
+				typename base_t::container_t mask = 1 << static_cast<typename bit_index_t::bitsize_t>(mIndex_);
 				typename base_t::container_t bitValue = (*pValue_) & mask;
 				typename base_t::nucleotide_type_t ntype = bitValue >> mIndex_;
 				return ntype;
@@ -35,11 +39,6 @@ namespace genetic {
 			};
 
 		private:
-			bit_nucleotide(const typename base_t::container_t &nucleotide, const typename bit_index_t &index) :
-				pValue_(&nucleotide), mIndex_(index)
-			{}; //-- redundant check --
-				// *p_value = nucleotide_type<T>::cast(*p_value);
-
 			typename base_t::container_t *pValue_;
 			typename bit_index_t mIndex_;
 		};

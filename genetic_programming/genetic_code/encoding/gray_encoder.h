@@ -14,7 +14,7 @@ namespace genetic {
 			inline gray_encoder(const codesize_t &codeSize, const int &spaceSize) :
 				genetic_encoder(codeSize, spaceSize)
 			{};
-			inline gray_encoder(const source_t &points_number, , const int &spaceSize) :
+			inline gray_encoder(const source_t &points_number, const int &spaceSize) :
 				genetic_encoder(points_number, spaceSize)
 			{};
 

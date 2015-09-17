@@ -134,14 +134,7 @@
     <ClInclude Include="bit_index.h" />
     <ClInclude Include="bit_nucleotide.h" />
     <ClInclude Include="nucleotide.h" />
-    <ClInclude Include="nucleotide_type.h" />
     <ClInclude Include="wide_nucleotide.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="bit_nucleotide.cpp" />
-    <ClCompile Include="nucleotide.cpp" />
-    <ClCompile Include="nucleotide_type.cpp" />
-    <ClCompile Include="wide_nucleotide.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

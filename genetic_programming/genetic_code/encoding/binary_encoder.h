@@ -6,6 +6,8 @@
 #include "helper.h"
 #include "genetic_encoder.h"
 
+#include "../genetic_code.h"
+
 namespace genetic {
 	namespace encoding {
 		template<typename _Tsource, typename _Tstorage>
@@ -29,7 +31,7 @@ namespace genetic {
 					while (div != 0) {
 						rem = div % 2;
 						div /= 2;
-						code.at(nucleotideIndex++) = rem;
+						(*code.at(nucleotideIndex++)) = rem;
 					}
 				}
 				return code;
@@ -41,7 +43,8 @@ namespace genetic {
 				for (int spaceSizeIndex = 0; spaceSizeIndex < space_size(); ++spaceSizeIndex) {
 					typename source_t point = 0;
 					for (size_t codeSizeIndex = 0; codeSizeIndex < code_size(); ++codeSizeIndex) {
-						point += code.at(nucleotideIndex). * power_list.at(codeSizeIndex);
+						std::unique_ptr<typename storage_t::base_t::nucleotide_t> nucleotide = code.at(nucleotideIndex);
+						point += static_cast<typename source_t>(nucleotide->get()) * power_list.at(codeSizeIndex);
 					}
 					points.at(spaceSizeIndex) = point;
 				}

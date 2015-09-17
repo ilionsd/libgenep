@@ -27,25 +27,8 @@
     <ClInclude Include="bit_index.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="nucleotide_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="bit_nucleotide.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="nucleotide.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="wide_nucleotide.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="nucleotide_type.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bit_nucleotide.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

@@ -24,5 +24,14 @@
     <ClInclude Include="bit_code.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="genetic_code.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nucleotide.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
