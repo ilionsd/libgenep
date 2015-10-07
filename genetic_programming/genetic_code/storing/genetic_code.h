@@ -8,78 +8,53 @@
 
 #include "../../genetic_traits/genetic_traits.h"
 #include "nucleotide.h"
+#include "utility.h"
 
 namespace genetic {
 
-	namespace primitive {
-		/// <summary>
-		/// Abstract prototype for nucleotide representation
-		/// </summary>
-		/// <typeparam name="T">Container type</param>
-		template<typename _Tcontainer>
-		class nucleotide_ref {
-			static_assert(genetic::is_container<_Tcontainer>::value,
+	namespace storing {
+
+
+		template<typename _Tderived_code>
+		class genetic_code {
+			static_assert(std::is_base_of<genetic_code<_Tderived_code>, _Tderived_code>::value,
+				"");
+			static_assert(is_container<_Tderived_code::container_t>::value, 
 				"Template should be specialized by unsigned integer type");
 
 		public:
-			typedef typename _Tcontainer container_t;
-			typedef typename nucleotide<container_t> nucleotide_t;
+			using derived_t = _Tderived_code;
+			using container_t = derived_t::container_t;
+			using nucleotide_accessor = utility::accessor<nucleotide_t>;
+			using nucleotide_mutator = utility::mutator<nucleotide_t>;
 
-			nucleotide_ref() = default;
-			~nucleotide_ref() = default;
+			using codesize_t = size_t;
+			using nucleotide_t = nucleotide<container_t>;
 
-			virtual nucleotide_t get() const = 0;
-			virtual void set(const nucleotide_t &type) = 0;
+			using nucleotide_cref = utility::const_reference<nucleotide_t, nucleotide_accessor>;
+			using nucleotide_ref = utility::reference<nucleotide_t, nucleotide_accessor, nucleotide_mutator>;
 
-			template<typename _Tcontainer_other>
-			inline nucleotide_ref<container_t> &operator=(const nucleotide<_Tcontainer_other> &other) {
-				set(other);
-				return (*this);
-			};
-			template<typename _Tcontainer_other>
-			inline nucleotide_ref<container_t> &operator=(const nucleotide_ref<_Tcontainer_other> &other) {
-				set(other.get());
-				return (*this);
-			};
+			genetic_code(const codesize_t &codeSize) :
+				mCodeSize(codeSize)
+			{};
 
-			inline bool operator==(const container_t &other) const {
-				return get() == nucleotide_type_t(other);
-			};
-			inline bool operator!=(const container_t &other) const {
-				return get() != nucleotide_type_t(other);
+
+			virtual std::unique_ptr<nucleotide_cref> at(const codesize_t &index) const = 0;
+			virtual std::unique_ptr<nucleotide_ref> at(const codesize_t &index) = 0;
+			
+
+			inline codesize_t code_size() {
+				return mCodeSize;
 			};
 
-		};
-	}; //-- namespace privitive --
-
-
-	template<typename _Tcontainer>
-	class genetic_code {
-		static_assert(is_container<_Tcontainer>::value, 
-			"Template should be specialized by unsigned integer type");
-
-	public:
-		typedef typename _Tcontainer container_t;
-		typedef typename size_t codesize_t;
-		typedef typename primitive::nucleotide<container_t> nucleotide_t;
-
-		genetic_code(const codesize_t &codeSize) :
-			codeSize_(codeSize)
-		{};
-
-		virtual std::unique_ptr<nucleotide_t> at(const codesize_t &index) = 0;
-		virtual std::unique_ptr<nucleotide_t> at(const codesize_t &index) const = 0;
-
-		inline codesize_t codesize() {
-			return codeSize_;
-		};
-
-	protected:
+		protected:
+			
 		
 
-	private:
-		codesize_t codeSize_;
-	};
+		private:
+			codesize_t mCodeSize;
+		};
+	}; //-- namespace privitive --
 }; //-- namespace genetic --
 
 #endif //-- _GENETIC_CODE_ --

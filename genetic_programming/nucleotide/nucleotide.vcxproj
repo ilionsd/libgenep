@@ -133,7 +133,6 @@
   <ItemGroup>
     <ClInclude Include="bit_index.h" />
     <ClInclude Include="bit_nucleotide.h" />
-    <ClInclude Include="nucleotide.h" />
     <ClInclude Include="wide_nucleotide.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

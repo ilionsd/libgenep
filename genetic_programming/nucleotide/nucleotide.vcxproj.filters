@@ -18,9 +18,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="nucleotide.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="wide_nucleotide.h">
       <Filter>Header Files</Filter>
     </ClInclude>

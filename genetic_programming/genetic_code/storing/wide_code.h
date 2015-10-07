@@ -16,22 +16,24 @@ namespace genetic {
 			typedef typename primitive::wide_nucleotide<typename base_t::container_t> nucleotide_t;
 
 			wide_code(const base_t::codesize_t& codeSize) :
-				genetic_code(codeSize), code_(codeSize)
+				genetic_code(codeSize), mCode(codeSize)
 			{};
 
 			virtual std::unique_ptr< base_t::nucleotide_t > at(const base_t::codesize_t &index) override {
-				typename base_t::container_t container = code_.at(index);
+				typename base_t::container_t container = mCode.at(index);
 				std::unique_ptr<typename base_t::nucleotide_t> nucleotidePtr(new nucleotide_t(container));
 				return nucleotidePtr;
 			};
 			virtual std::unique_ptr<base_t::nucleotide_t> at(const base_t::codesize_t &index) const override {
-				typename base_t::container_t container = code_.at(index);
+				typename base_t::container_t container = mCode.at(index);
 				std::unique_ptr<typename base_t::nucleotide_t> nucleotidePtr(new nucleotide_t(container));
 				return std::move(nucleotidePtr);
 			};
 
 		private:
-			std::vector<typename base_t::container_t> code_;
+
+
+			std::vector<typename base_t::container_t> mCode;
 		};
 	};
 };

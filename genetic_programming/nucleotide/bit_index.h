@@ -22,7 +22,7 @@ namespace genetic {
 				"Template should be specialized by unsigned integer type");
 
 		public:
-			typedef size_t bitsize_t;
+			using bitsize_t = size_t;
 
 			bit_index() :
 				m_index(0)

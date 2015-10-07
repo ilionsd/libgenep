@@ -134,7 +134,7 @@
     <ClInclude Include="bit_code.h" />
     <ClInclude Include="genetic_code.h" />
     <ClInclude Include="nucleotide.h" />
-    <ClInclude Include="reference.h" />
+    <ClInclude Include="utility.h" />
     <ClInclude Include="wide_code.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

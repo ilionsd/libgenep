@@ -6,7 +6,7 @@
 #include <type_traits>
 
 namespace genetic {
-	namespace primitive {
+	namespace storing {
 			/// <summary>
 			/// Represent nucleotides possibly values: 0 or 1
 			/// </summary>
@@ -21,22 +21,22 @@ namespace genetic {
 				static const nucleotide<source_t> zero;
 				static const nucleotide<source_t> one;
 
-				nucleotide(const bool &type) {
+				inline nucleotide(const bool &type) {
 					mType = (type) ? scOne : scZero;
 				};
-				nucleotide() :
+				inline nucleotide() :
 					nucleotide(false)
 				{};
-				nucleotide(const source_t &type) :
+				inline nucleotide(const source_t &type) :
 					nucleotide(static_cast<bool>(type))
 				{};
 
 				~nucleotide() = default;
 				
-				operator bool() const {
+				inline operator bool() const {
 					return static_cast<bool>(mType);
 				};
-				operator source_t() const {
+				inline operator source_t() const {
 					return static_cast<source_t>(mType);
 				};
 				
@@ -69,7 +69,7 @@ namespace genetic {
 			const nucleotide<T> nucleotide<T>::one(nucleotide<T>::scOne);
 
 
-	}; //-- namespace primitive --
+	}; //-- namespace storing --
 }; //-- namespace genetic --
 
 #endif //-- _NUCLEOTIDE_ --
