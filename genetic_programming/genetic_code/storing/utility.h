@@ -7,67 +7,61 @@
 
 namespace genetic {
 	namespace utility {
-		template<typename T>
-		class accessor {
-		public:
-			typedef typename T value_type;
-			virtual value_type get() const = 0;
-		};
 
 		template<typename T>
-		class mutator {
+		class reference_property
+		{
 		public:
-			typedef typename T value_type;
+			using value_type = T;
+			virtual value_type get() const = 0;
 			virtual void set(const value_type &value) = 0;
 		};
 
-
-		template <typename _Tref, typename _Taccessor>
-		class const_reference :
-			protected _Taccessor
+		template<typename T>
+		class equalable
 		{
-			static_assert(std::is_base_of<accessor<_Tref>, _Taccessor>::value,
-				"");
-
-			using _Taccessor::get;
-
 		public:
-			typedef typename _Tref ref_t;
-			typedef typename _Taccessor accessor_t;
-
-			const_reference() = default;
-			~const_reference() = default;
-
-			inline operator ref_t() const {
-				return get();
-			};
-
-			inline bool operator==(const accessor_t &other) const {
+			using value_type = T;
+			using value_type::get;
+			
+			inline bool operator==(const value_type &other) const {
 				return this->get() == other.get();
 			};
-			inline bool operator!=(const accessor_t &other) const {
+			inline bool operator!=(const value_type &other) const {
 				return this->get() != other.get();
 			};
 		};
 
 
-		template<typename _Tref, typename _Taccessor, typename _Tmutator>
-		class reference : 
-			public const_reference<_Tref, _Taccessor>,
-			protected _Tmutator
+		template <typename _Tproperty>
+		class const_reference : 
+			public _Tproperty,
+			public equalable<const_reference<_Tproperty>>
 		{
-			static_assert(std::is_base_of<mutator<_Tref>, _Tmutator>::value,
-				"");
-			using _Tmutator::value_type;
-			using _Tmutator::set;
-
 		public:
-			typedef typename _Tmutator mutator_t;
+			using property_t = _Tproperty;
+			using ref_t = typename property_t::value_type;
+			
+			using property_t::property_t;
 
-			reference() = default;
-			~reference() = default;
+			using property_t::get;
+			inline operator ref_t() const {
+				return get();
+			};
 
-			inline reference<ref_t, accessor_t, mutator_t> &operator=(const accessor_t &other) {
+		};
+
+
+		template<typename _Tproperty>
+		class reference : 
+			public const_reference<_Tproperty>
+		{
+		public:
+			using const_reference<_Tproperty>::const_reference;
+
+			using property_t::set;
+
+			inline reference<property_t> &operator=(const const_reference<property_t> &other) {
 				set(other.get());
 				return *this;
 			};

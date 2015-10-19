@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bit_code.h" />
+    <ClInclude Include="bit_index.h" />
     <ClInclude Include="genetic_code.h" />
     <ClInclude Include="nucleotide.h" />
     <ClInclude Include="utility.h" />

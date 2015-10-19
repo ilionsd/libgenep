@@ -6,13 +6,20 @@
 #include "helper.h"
 #include "genetic_encoder.h"
 
-#include "../genetic_code.h"
+#include "../storing/genetic_code.h"
 
 namespace genetic {
 	namespace encoding {
 		template<typename _Tsource, typename _Tstorage>
-		class binary_encoder : public genetic_encoder<_Tsource, _Tstorage> {
+		class binary_encoder : 
+			public genetic_encoder<_Tsource, _Tstorage> 
+		{
 		public:
+			using base_t = genetic_encoder<_Tsource, _Tstorage>;
+			using source_t = typename base_t::source_t;
+			using storage_t = typename base_t::storage_t;
+			using codesize_t = typename base_t::codesize_t;
+
 			inline binary_encoder(const codesize_t &codeSize, const int &spaceSize) :
 				genetic_encoder(codeSize, spaceSize)
 			{};

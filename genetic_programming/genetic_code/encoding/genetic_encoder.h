@@ -5,20 +5,21 @@
 #include <cstdlib>
 #include <type_traits>
 
-#include "../genetic_code.h"
+#include "../storing/genetic_code.h"
 
 namespace genetic {
 	namespace encoding {
 		template<typename _Tsource, typename _Tstorage>
-		class genetic_encoder {
-			static_assert(genetic::is_base_of_template_t<genetic_code, _Tstorage>::value,
+		class genetic_encoder 
+		{
+			static_assert(is_base_of_template_t<storing::genetic_code, _Tstorage>::value,
 				"Storage should be derived from genetic_code");
 			
 		public:
-			typedef typename _Tstorage								storage_t;
-			typedef typename _Tsource								source_t;
-			typedef typename storage_t::container_t					container_t;
-			typedef typename genetic_code<container_t>::codesize_t	codesize_t;
+			using storage_t = _Tstorage;
+			using source_t = _Tsource;
+			using container_t = typename storage_t::container_t;
+			using codesize_t = typename storage_t::codesize_t;
 
 			inline genetic_encoder(const codesize_t &codeSize, const int &spaceSize) :
 				mCodeSize_(codeSize), mSpaceSize_(spaceSize)

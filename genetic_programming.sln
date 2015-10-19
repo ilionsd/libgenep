@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "genetic_programming", "genetic_programming\genetic_programming.vcxproj", "{0514FE6E-E72C-485A-B66C-1AA5F941F407}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nucleotide", "genetic_programming\nucleotide\nucleotide.vcxproj", "{9E1F074C-23A6-40BA-AB99-8DB491F9956D}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "encoding", "genetic_programming\genetic_code\encoding\encoding.vcxproj", "{BDBB4A35-EFA6-4182-8782-564AA27B946E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "storing", "genetic_programming\genetic_code\storing\storing.vcxproj", "{3D828822-1DC2-4E32-B6A5-5D2D5F4E5DD3}"
@@ -35,17 +33,6 @@ Global
 		{0514FE6E-E72C-485A-B66C-1AA5F941F407}.Release|Win32.Build.0 = Release|Win32
 		{0514FE6E-E72C-485A-B66C-1AA5F941F407}.Release|x64.ActiveCfg = Release|x64
 		{0514FE6E-E72C-485A-B66C-1AA5F941F407}.Release|x64.Build.0 = Release|x64
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Debug|Win32.ActiveCfg = Debug|Win32
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Debug|Win32.Build.0 = Debug|Win32
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Debug|x64.ActiveCfg = Debug|x64
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Debug|x64.Build.0 = Debug|x64
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Release|Win32.ActiveCfg = Release|Win32
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Release|Win32.Build.0 = Release|Win32
-		{9E1F074C-23A6-40BA-AB99-8DB491F9956D}.Release|x64.ActiveCfg = Release|Win32
 		{BDBB4A35-EFA6-4182-8782-564AA27B946E}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{BDBB4A35-EFA6-4182-8782-564AA27B946E}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{BDBB4A35-EFA6-4182-8782-564AA27B946E}.Debug|Win32.ActiveCfg = Debug|Win32

@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <sstream>
 
-#include "../genetic_traits/genetic_traits.h"
+#include "../../genetic_traits/genetic_traits.h"
 
 namespace genetic {
 	namespace primitive {

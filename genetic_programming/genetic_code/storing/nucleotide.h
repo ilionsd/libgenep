@@ -11,10 +11,10 @@ namespace genetic {
 			/// Represent nucleotides possibly values: 0 or 1
 			/// </summary>
 			template<typename _Tsource>
-			class nucleotide {
+			class nucleotide 
+			{
 				static_assert(std::is_integral<_Tsource>::value,
-					"Template should be specialized by integral type");
-				
+					"Template should be specialized by integral type");	
 			public:
 				typedef typename _Tsource source_t;
 
