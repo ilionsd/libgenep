@@ -4,6 +4,7 @@
 #define _REF_
 
 #include <type_traits>
+#include <iostream>
 
 namespace genetic {
 	namespace utility {
@@ -15,28 +16,18 @@ namespace genetic {
 			using value_type = T;
 			virtual value_type get() const = 0;
 			virtual void set(const value_type &value) = 0;
-		};
 
-		template<typename T>
-		class equalable
-		{
-		public:
-			using value_type = T;
-			using value_type::get;
-			
-			inline bool operator==(const value_type &other) const {
-				return this->get() == other.get();
-			};
-			inline bool operator!=(const value_type &other) const {
-				return this->get() != other.get();
+			friend std::ostream& operator << (std::ostream& os, const reference_property<value_type> &referenceProperty)
+			{
+				os << referenceProperty.get();
+				return os;
 			};
 		};
 
 
 		template <typename _Tproperty>
 		class const_reference : 
-			public _Tproperty,
-			public equalable<const_reference<_Tproperty>>
+			public _Tproperty
 		{
 		public:
 			using property_t = _Tproperty;
@@ -44,10 +35,33 @@ namespace genetic {
 			
 			using property_t::property_t;
 
+			using property_t::operator<<;
+
 			using property_t::get;
 			inline operator ref_t() const {
 				return get();
 			};
+
+			inline bool operator==(const const_reference<property_t> &other) const {
+				return this->get() == other.get();
+			};
+			inline bool operator!=(const const_reference<property_t> &other) const {
+				return this->get() != other.get();
+			};
+			inline bool operator==(const property_t &other) const {
+				return this->get() == other.get();
+			};
+			inline bool operator!=(const property_t &other) const {
+				return this->get() != other.get();
+			};
+			inline bool operator==(const ref_t &other) const {
+				return this->get() == other;
+			};
+			inline bool operator!=(const ref_t &other) const {
+				return this->get() != other;
+			};
+
+
 
 		};
 
@@ -63,6 +77,14 @@ namespace genetic {
 
 			inline reference<property_t> &operator=(const const_reference<property_t> &other) {
 				set(other.get());
+				return *this;
+			};
+			inline reference<property_t> &operator=(const property_t &other) {
+				set(other.get());
+				return *this;
+			};
+			inline reference<property_t> &operator=(const ref_t &other) {
+				set(other);
 				return *this;
 			};
 		};

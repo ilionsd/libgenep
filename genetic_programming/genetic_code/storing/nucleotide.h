@@ -56,6 +56,14 @@ namespace genetic {
 				inline bool operator!=(const nucleotide<_otherTsource> &other) const {
 					return mType != other.mType;
 				};
+				template<typename _otherTsource>
+				inline bool operator==(const _otherTsource &other) const {
+					return mType == other;
+				};
+				template<typename _otherTsource>
+				inline bool operator!=(const _otherTsource &other) const {
+					return mType != other;
+				};
 
 			private:
 				static const char scZero = 0, scOne = 1;
