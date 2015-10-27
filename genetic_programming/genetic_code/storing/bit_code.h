@@ -27,13 +27,13 @@ namespace genetic {
 			using bitindex_t = primitive::bit_index<container_t>;
 
 			bit_property(const container_t &container, const bitindex_t &index) :
-				mContainerPtr(&container),
+				mContainerPtr(const_cast<container_t*>(&container)),
 				mIndex(index)
 			{};
 
 			virtual nucleotide_t get() const override {
 				container_t bitValue = (*mContainerPtr) & access_mask(mIndex);
-				return static_cast<nucleotide_t>(trim(bitValue, mIndex));
+				return static_cast<nucleotide_t>(right_shift(bitValue, mIndex));
 			};
 
 			virtual void set(const nucleotide_t &value) override {
@@ -74,6 +74,7 @@ namespace genetic {
 			
 			using codesize_t = typename base_t::codesize_t;
 			using nucleotide_t = typename reference_property::nucleotide_t;
+			using bitindex_t = typename reference_property::bitindex_t;
 
 			using nucleotide_cref = typename base_t::nucleotide_cref;
 			using nucleotide_ref = typename base_t::nucleotide_ref;
@@ -106,7 +107,7 @@ namespace genetic {
 			inline static size_t element_size(const codesize_t& codeSize) 
 			{
 				return static_cast<size_t>(
-					std::ceil(static_cast<double>(codeSize) / bit_code<container_t>::container_size));
+					std::ceil(static_cast<double>(codeSize) / container<container_t>::bit_size));
 			};
 
 			std::vector<container_t> mCode;

@@ -28,5 +28,6 @@ int main() {
 
 	genetic::test::storage_test<gs::bit_code<unsigned char>>::known_size_test(100);
 
+	std::system("pause");
 	return 0;
 };

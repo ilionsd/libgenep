@@ -27,10 +27,13 @@ namespace genetic {
 				}
 				
 				bool testResult = true;
-				for (int k = 0; k < codeSize; ++k) {
+				for (int k = 0; k < codeSize; k++) {
 					if (code.at(k).get() != vec.at(k)) {
-						std::cout << "vector.at(" << k << ") = " << vec.at(k) << " not equal code.at(" << k << ") = " << code.at(k) << std::endl;
+						std::cout << "vector.at(" << k << ") = " << (int)vec.at(k) << " not equals code.at(" << k << ") = " << code.at(k) << std::endl;
 						testResult = false;
+					}
+					else {
+						std::cout << "vector.at(" << k << ") = " << (int)vec.at(k) << " equals code.at(" << k << ") = " << code.at(k) << std::endl;
 					}
 				}
 				std::cout << "test end" << std::endl;

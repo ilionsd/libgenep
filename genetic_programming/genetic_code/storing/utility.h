@@ -17,10 +17,8 @@ namespace genetic {
 			virtual value_type get() const = 0;
 			virtual void set(const value_type &value) = 0;
 
-			friend std::ostream& operator << (std::ostream& os, const reference_property<value_type> &referenceProperty)
-			{
-				os << referenceProperty.get();
-				return os;
+			friend std::ostream& operator << (std::ostream& os, const reference_property<value_type> &referenceProperty) {
+				return os << referenceProperty.get();
 			};
 		};
 
@@ -34,8 +32,6 @@ namespace genetic {
 			using ref_t = typename property_t::value_type;
 			
 			using property_t::property_t;
-
-			using property_t::operator<<;
 
 			using property_t::get;
 			inline operator ref_t() const {

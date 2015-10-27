@@ -4,6 +4,7 @@
 #define _NUCLEOTIDE_
 
 #include <type_traits>
+#include <iostream>
 
 namespace genetic {
 	namespace storing {
@@ -21,15 +22,10 @@ namespace genetic {
 				static const nucleotide<source_t> zero;
 				static const nucleotide<source_t> one;
 
-				inline nucleotide(const bool &type) {
-					mType = (type) ? scOne : scZero;
+
+				inline nucleotide(const source_t &type) {
+					mType = (static_cast<bool>(type)) ? scOne : scZero;
 				};
-				inline nucleotide() :
-					nucleotide(false)
-				{};
-				inline nucleotide(const source_t &type) :
-					nucleotide(static_cast<bool>(type))
-				{};
 
 				~nucleotide() = default;
 				
@@ -63,6 +59,10 @@ namespace genetic {
 				template<typename _otherTsource>
 				inline bool operator!=(const _otherTsource &other) const {
 					return mType != other;
+				};
+
+				friend std::ostream& operator << (std::ostream &os, const nucleotide<source_t> &nucleotide) {
+					return os << static_cast<int>(nucleotide.mType);
 				};
 
 			private:
