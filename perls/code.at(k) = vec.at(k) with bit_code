@@ -1,0 +1,17 @@
+code.at(k) = (vec.at(k));
+00007FF67B88B3D7  movsxd      rax,dword ptr [rbp+0C4h]
+00007FF67B88B3DE  mov         rdx,rax
+00007FF67B88B3E1  lea         rcx,[vec]
+00007FF67B88B3E5  call        std::vector<unsigned char,std::allocator<unsigned char> >::at (07FF67B8726AEh)
+00007FF67B88B3EA  mov         rdx,rax
+00007FF67B88B3ED  lea         rcx,[rbp+2A4h]
+00007FF67B88B3F4  call        genetic::storing::nucleotide<unsigned char>::nucleotide<unsigned char> (07FF67B872D75h)
+00007FF67B88B3F9  movsxd      rax,dword ptr [rbp+0C4h]
+00007FF67B88B400  mov         qword ptr [rbp+258h],rax
+00007FF67B88B407  lea         r8,[rbp+258h]
+00007FF67B88B40E  lea         rdx,[rbp+278h]
+00007FF67B88B415  lea         rcx,[code]  
+00007FF67B88B419  call        genetic::storing::bit_code<unsigned char>::at (07FF67B872E01h)
+00007FF67B88B41E  lea         rdx,[rbp+2A4h]
+00007FF67B88B425  mov         rcx,rax
+00007FF67B88B428  call        genetic::utility::reference<genetic::storing::bit_property<unsigned char> >::operator= (07FF67B8721EFh)

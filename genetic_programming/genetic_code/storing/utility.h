@@ -20,7 +20,7 @@ namespace genetic {
 			friend std::ostream& operator << (std::ostream& os, const reference_property<value_type> &referenceProperty) {
 				return os << referenceProperty.get();
 			};
-		};
+		}; //-- class reference_property<T> --
 
 
 		template <typename _Tproperty>
@@ -56,10 +56,7 @@ namespace genetic {
 			inline bool operator!=(const ref_t &other) const {
 				return this->get() != other;
 			};
-
-
-
-		};
+		}; //-- class const_reference<T> --
 
 
 		template<typename _Tproperty>
@@ -83,8 +80,8 @@ namespace genetic {
 				set(other);
 				return *this;
 			};
-		};
-	};
-};
+		}; //-- class reference<T> --
+	}; //-- namespace utility --
+}; //-- namespace genetic --
 
 #endif

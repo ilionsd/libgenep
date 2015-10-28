@@ -26,43 +26,44 @@ namespace genetic {
 
 			using bitindex_t = primitive::bit_index<container_t>;
 
-			bit_property(const container_t &container, const bitindex_t &index) :
+			explicit bit_property(const container_t &container, const bitindex_t &index) :
 				mContainerPtr(const_cast<container_t*>(&container)),
 				mIndex(index)
 			{};
 
 			virtual nucleotide_t get() const override {
-				container_t bitValue = (*mContainerPtr) & access_mask(mIndex);
-				return static_cast<nucleotide_t>(right_shift(bitValue, mIndex));
+				container_t bitValue = (*mContainerPtr) & mask(0x1, mIndex);
+				return static_cast<nucleotide_t>(demask(bitValue, mIndex));
 			};
 
+			//-- https://graphics.stanford.edu/~seander/bithacks.html#ConditionalSetOrClearBitsWithoutBranching --
 			virtual void set(const nucleotide_t &value) override {
-				(*mContainerPtr) &= mutate_mask(value, mIndex);
+				container_t m = mask(value, mIndex);
+				(*mContainerPtr) = ((*mContainerPtr) & ~m) | (-static_cast<container_t>(value) & m);
 			};
 
 		protected:
-			inline static container_t access_mask(const bitindex_t &index) {
-				return static_cast<container_t>(1) << static_cast<typename bitindex_t::bitsize_t>(index);
+
+			inline static container_t mask(const container_t &value, const bitindex_t &index) {
+				container_t m = value << static_cast<typename bitindex_t::bitsize_t>(index);
+				return m;
 			};
 
-			inline static container_t mutate_mask(const nucleotide_t &value, const bitindex_t &index) {
-				return ~(static_cast<container_t>(!value) << static_cast<typename bitindex_t::bitsize_t>(index));
-			};
-
-			inline static container_t right_shift(const container_t &value, const bitindex_t &index) {
-				return value >> static_cast<typename bitindex_t::bitsize_t>(index);
+			inline static container_t demask(const container_t &mask, const bitindex_t &index) {
+				container_t value = mask >> static_cast<typename bitindex_t::bitsize_t>(index);
+				return value;
 			};
 
 		private:
 			container_t *mContainerPtr;
 			bitindex_t mIndex;
-		};
+		}; //-- class bit_property<T> --
 
 
 
 		template<typename _Tcontainer>
 		class bit_code : 
-			genetic_code < _Tcontainer, bit_code<_Tcontainer>, bit_property<_Tcontainer> > 
+			genetic_code < _Tcontainer, bit_property<_Tcontainer> > 
 		{
 			static_assert(is_container<_Tcontainer>::value,
 				"Template should be specialized by unsigned integer type");
@@ -70,7 +71,7 @@ namespace genetic {
 		public:
 			using container_t = _Tcontainer;
 			using reference_property = bit_property<container_t>;
-			using base_t = genetic_code< container_t, bit_code< container_t >,  reference_property >;
+			using base_t = genetic_code< container_t, reference_property >;
 			
 			using codesize_t = typename base_t::codesize_t;
 			using nucleotide_t = typename reference_property::nucleotide_t;
@@ -111,8 +112,6 @@ namespace genetic {
 			};
 
 			std::vector<container_t> mCode;
-		};
-
-		
-	};
-};
+		}; //-- class bit_code<T> --
+	}; //-- namespace storing --
+}; //-- namespace genetic --

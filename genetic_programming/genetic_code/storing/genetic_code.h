@@ -14,15 +14,13 @@
 namespace genetic {
 
 	namespace storing {
-		template<typename _Tcontainer, typename _Tderived_code, typename _Treference_property>
+		template<typename _Tcontainer, typename _Treference_property>
 		class genetic_code 
 		{
 			/*static_assert(std::is_base_of<genetic_code<_Tderived_code>, _Tderived_code>::value,
 				"");*/
 			
-
 		public:
-			using derived_t = _Tderived_code;
 			using container_t = _Tcontainer;
 			using reference_property = _Treference_property;
 
@@ -40,7 +38,7 @@ namespace genetic {
 			virtual nucleotide_ref at(const codesize_t &index) = 0;
 			
 
-			inline codesize_t code_size() {
+			inline codesize_t size() {
 				return mCodeSize;
 			};
 
