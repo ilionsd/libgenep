@@ -13,6 +13,7 @@
 namespace genetic {
 	namespace storing {
 
+
 		///<summary>
 		///Class for bit property
 		///</summary>
@@ -57,13 +58,14 @@ namespace genetic {
 		private:
 			container_t *mContainerPtr;
 			bitindex_t mIndex;
+
 		}; //-- class bit_property<T> --
 
 
 
 		template<typename _Tcontainer>
 		class bit_code : 
-			genetic_code < _Tcontainer, bit_property<_Tcontainer> > 
+			public genetic_code < _Tcontainer, bit_property<_Tcontainer> > 
 		{
 			static_assert(is_container<_Tcontainer>::value,
 				"Template should be specialized by unsigned integer type");
@@ -86,24 +88,21 @@ namespace genetic {
 				mCode(bit_code<container_t>::element_size(codeSize))
 			{};
 
-			virtual nucleotide_cref at(const codesize_t &index) const override
+			virtual nucleotide_cref operator[] (const codesize_t &index) const override
 			{
 				size_t elementIndex = index / container<container_t>::bit_size;
 				bitindex_t bitIndex = index % container<container_t>::bit_size;
 				nucleotide_cref cRef(mCode[elementIndex], bitIndex);
 				return cRef;
 			};
-
-			virtual nucleotide_ref at(const codesize_t &index) override 
+			virtual nucleotide_ref operator[] (const codesize_t &index) override
 			{
 				size_t elementIndex = index / container<container_t>::bit_size;
 				bitindex_t bitIndex = index % container<container_t>::bit_size;
 				nucleotide_ref ref(mCode[elementIndex], bitIndex);
 				return ref;
 			};
-
-			
-
+		
 		private:
 			inline static size_t element_size(const codesize_t& codeSize) 
 			{

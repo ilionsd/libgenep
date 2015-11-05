@@ -1,8 +1,9 @@
 #pragma once
 
 #include <cstdlib>
+#include <iostream>
+#include <vector>
 
-#include "genetic_code\storing\nucleotide.h"
 
 namespace genetic {
 	namespace test {
@@ -17,9 +18,8 @@ namespace genetic {
 
 				std::cout << "codeSize = " << codeSize << std::endl;
 				storage_t code(codeSize);
-				std::cout << "Stogage size " << sizeof(code) << std::endl;
 				std::vector<unsigned char> vec(codeSize);
-				for (std::vector<unsigned char>::iterator it = vec.begin(); it != vec.end(); ++it)
+				for (auto it = vec.begin(); it != vec.end(); ++it)
 					(*it) = (rand() > RAND_MAX / 2) ? 1 : 0;
 				
 				for (int k = 0; k < codeSize; ++k) {
@@ -45,9 +45,8 @@ namespace genetic {
 				int codeSize = (double)rand() / (RAND_MAX + 1) * (maxSize - minSize) + minSize;
 				std::cout << "codeSize = " << codeSize << std::endl;
 				storage_t code(codeSize);
-				std::cout << "Stogage size " << sizeof(code) << std::endl;
 				std::vector<char> vec(codeSize);
-				for (std::vector<char>::iterator it = vec.begin(); it != vec.end(); ++it)
+				for (auto it = vec.begin(); it != vec.end(); ++it)
 					(*it) = (rand() > RAND_MAX / 2) ? 1 : 0;
 
 				for (int k = 0; k < codeSize; ++k) {

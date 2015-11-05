@@ -64,14 +64,11 @@ namespace genetic {
 				mCode(codeSize)
 			{};
 
-			virtual nucleotide_cref at(const codesize_t &index) const override 
-			{
+			nucleotide_cref operator[] (const codesize_t &index) const override {
 				nucleotide_cref cRef(mCode[index]);
 				return cRef;
 			};
-
-			virtual nucleotide_ref at(const codesize_t &index) override 
-			{
+			nucleotide_ref operator[] (const codesize_t &index) override {
 				nucleotide_ref ref(mCode[index]);
 				return ref;
 			};

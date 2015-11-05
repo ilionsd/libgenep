@@ -30,32 +30,36 @@ namespace genetic {
 			{};
 
 			virtual storage_t encode(const std::vector<source_t> &points) const override {
-				typename container_t rem;
-				typename source_t div;
-				typename storage_t code(code_size() * space_size());
-				typename codesize_t nucleotideIndex = 0;
-				
-				for (size_t k = 0; k < space_size(); ++k) {
-					div = points.at(k);
-					while (div != 0) {
+				container_t rem;
+				source_t div;
+				storage_t code(code_alloc_size());
+				codesize_t offset = 0;
+				for (size_t dim = 0; dim < space_size(); ++dim) {
+					div = points[k];
+					for (codesize_t bitIndex = 0; div != 0 && bitIndex < code_size(dim); ++bitIndex) {
 						rem = div % 2;
 						div /= 2;
-						(*code.at(nucleotideIndex++)) = rem;
+						code[offset + bitIndex] = rem;
 					}
+					offset += code_size(dim);
 				}
 				return code;
 			};
 			virtual std::vector<source_t> decode(const storage_t &code) const override {
 				std::vector<source_t> points(space_size());
-				std::vector<source_t> power_list = helper<typename source_t>::pow_vector<2>(code_size());
-				typename codesize_t nucleotideIndex = 0;
-				for (int spaceSizeIndex = 0; spaceSizeIndex < space_size(); ++spaceSizeIndex) {
-					typename source_t point = 0;
-					for (size_t codeSizeIndex = 0; codeSizeIndex < code_size(); ++codeSizeIndex) {
-						std::unique_ptr<typename storage_t::base_t::nucleotide_t> nucleotide = code.at(nucleotideIndex);
-						point += static_cast<typename source_t>(nucleotide->get()) * power_list.at(codeSizeIndex);
+				std::vector<source_t> power_list = helper<source_t>::pow_vector<2>(code_size());
+				codesize_t nucleotideIndex = 0;
+				codesize_t offset = 0;
+				source_t point;
+				typename storage_t::nucleotide_t::source_t sourceVal;
+				for (int dim = 0; dim < space_size(); ++dim) {
+					point = 0;
+					for (size_t bitIndex = 0; bitIndex < code_size(dim); ++bitIndex) {
+						sourceVal = code[offset + bitIndex];
+						point += static_cast<source_t>(sourceVal) * power_list[bitIndex];
 					}
-					points.at(spaceSizeIndex) = point;
+					offset += code_size(dim);
+					points[dim] = point;
 				}
 				return points;
 			};

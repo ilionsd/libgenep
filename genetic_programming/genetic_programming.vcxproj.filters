@@ -23,5 +23,8 @@
     <ClInclude Include="storage_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="encoding_test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
