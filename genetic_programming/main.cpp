@@ -24,6 +24,7 @@
 int main() {
 	std::cout << "Genetic Algoritm Development Programm" << std::endl;
 
+
 	unsigned int minSize = 1;
 	unsigned int maxSize = 10000;
 	namespace gt = genetic::test;
@@ -56,7 +57,13 @@ int main() {
 
 	namespace ge = genetic::encoding;
 
-	//gt::encoding_test<ge::binary_encoder<unsigned int, gs::bit_code<unsigned char>>>::known_size(21, 1000000);
+	std::vector<unsigned char> example(3);
+	example[0] = example[1] = example[2] = 16;
+	gt::encoding_test<ge::binary_encoder<unsigned char, gs::bit_code<unsigned char>>>::known_size(3, example);
+
+	unsigned dimSize = 10;
+	std::vector<unsigned int> vec = gt::encoding_test<ge::binary_encoder<unsigned int, gs::bit_code<unsigned char>>>::dimPointsRandom(5, dimSize);
+	gt::encoding_test<ge::binary_encoder<unsigned int, gs::bit_code<unsigned char>>>::known_size(3, vec);
 
 
 	std::system("pause");

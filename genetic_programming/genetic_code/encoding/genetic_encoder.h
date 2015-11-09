@@ -23,10 +23,13 @@ namespace genetic {
 			using codesize_t = typename storage_t::codesize_t;
 
 			inline genetic_encoder(const std::vector<source_t> pointNumbers) :
-				mDimCodeSize(pointNumbers.size())
+				mDimCodeSize(pointNumbers.size()),
+				codeAllocSize()
 			{
-				for (codesize_t k = 0; k < space_size(); ++k)
+				for (codesize_t k = 0; k < space_size(); ++k) {
 					mDimCodeSize[k] = get_code_size(pointNumbers[k]);
+					codeAllocSize += mDimCodeSize[k];
+				}
 			};
 
 			inline genetic_encoder(const unsigned int &spaceSize, const source_t &pointsNumber) :
@@ -62,13 +65,15 @@ namespace genetic {
 				codeAllocSize = spaceSize * codeSize;
 			};
 
-			codesize_t code_alloc_size() {
+			codesize_t code_alloc_size() const {
 				return codeAllocSize;
 			};
 
 		private:
-			inline static codesize_t get_code_size(const source_t &points_number) {
-				return static_cast<codesize_t>(ceil(log(points_number)));
+			inline static codesize_t get_code_size(const source_t &pointsNumber) {
+				double logPointsNumber = log2(pointsNumber);
+				double ceilPointsNumber = ceil(logPointsNumber);
+				return static_cast<codesize_t>(ceilPointsNumber);
 			};
 
 			std::vector<codesize_t> mDimCodeSize;
