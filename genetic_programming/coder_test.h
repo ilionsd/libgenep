@@ -10,13 +10,13 @@ namespace genetic {
 		using std::cout;
 		using std::endl;
 
-		template<typename _Tencoder>
-		class encoding_test
+		template<typename _Tcoder>
+		class coding_test
 		{
 		public:
-			using encoder_t = _Tencoder;
-			using source_t = typename encoder_t::source_t;
-			using storage_t = typename encoder_t::storage_t;
+			using coder_t = _Tcoder;
+			using source_t = typename coder_t::source_t;
+			using storage_t = typename coder_t::storage_t;
 
 			static std::vector<source_t> dimPointsRandom(const unsigned int seed, const unsigned int dimSize) {
 				srand(seed);
@@ -28,9 +28,9 @@ namespace genetic {
 				return vec;
 			};
 
-			static bool known_size(const unsigned int seed, const std::vector<source_t> dimPointsNumber)
+			static bool known_size(const unsigned int seed, const std::vector<source_t> &dimPointsNumber)
 			{
-				cout << endl << "Encoder KNOWN SIZE test on " << typeid(encoder_t).name() << " with " << typeid(storage_t).name() << endl
+				cout << endl << "Encoder KNOWN SIZE test on " << typeid(coder_t).name() << " with " << typeid(storage_t).name() << endl
 					<< "This programm will create vector of specifed size with unsigned integer values and convert it into genetic code. After that genetic code will be decoded into the same vector and compare values of them" << endl;
 				size_t spaceSize = dimPointsNumber.size();
 				cout << "Space size = " << spaceSize << endl;
@@ -40,9 +40,9 @@ namespace genetic {
 					srcVec[k] = (double)rand() / (RAND_MAX + 1) * dimPointsNumber[k];
 				}
 
-				encoder_t encoder(dimPointsNumber);
-				storage_t code = encoder.encode(srcVec);
-				std::vector<source_t> dstVec = encoder.decode(code);
+				coder_t coder(dimPointsNumber);
+				storage_t code = coder.encode(srcVec);
+				std::vector<source_t> dstVec = coder.decode(code);
 
 				int errorCount = 0;
 				for (int k = 0; k < spaceSize; ++k) {

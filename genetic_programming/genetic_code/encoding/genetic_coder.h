@@ -11,7 +11,7 @@
 namespace genetic {
 	namespace encoding {
 		template<typename _Tsource, typename _Tstorage>
-		class genetic_encoder 
+		class genetic_coder 
 		{
 			/*static_assert(is_base_of_template_t<storing::genetic_code, _Tstorage>::value,
 				"Storage should be derived from genetic_code");*/
@@ -22,7 +22,7 @@ namespace genetic {
 			using container_t = typename storage_t::container_t;
 			using codesize_t = typename storage_t::codesize_t;
 
-			inline genetic_encoder(const std::vector<source_t> pointNumbers) :
+			inline genetic_coder(const std::vector<source_t> &pointNumbers) :
 				mDimCodeSize(pointNumbers.size()),
 				codeAllocSize()
 			{
@@ -32,7 +32,7 @@ namespace genetic {
 				}
 			};
 
-			inline genetic_encoder(const unsigned int &spaceSize, const source_t &pointsNumber) :
+			inline genetic_coder(const unsigned int &spaceSize, const source_t &pointsNumber) :
 				genetic_encoder(spaceSize, get_code_size(pointsNumber))
 			{};
 
@@ -51,7 +51,7 @@ namespace genetic {
 			virtual std::vector<source_t> decode(const storage_t &code) const = 0;
 
 		protected:
-			explicit genetic_encoder(const std::vector<codesize_t> dimCodeSizes) :
+			explicit genetic_coder(const std::vector<codesize_t> dimCodeSizes) :
 				mDimCodeSize(dimCodeSizes),
 				codeAllocSize()
 			{
@@ -59,7 +59,7 @@ namespace genetic {
 					codeAllocSize += *it;
 			};
 
-			explicit genetic_encoder(const int &spaceSize, const codesize_t &codeSize) :
+			explicit genetic_coder(const int &spaceSize, const codesize_t &codeSize) :
 				mDimCodeSize(spaceSize, codeSize)
 			{
 				codeAllocSize = spaceSize * codeSize;

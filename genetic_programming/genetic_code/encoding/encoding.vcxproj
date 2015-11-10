@@ -131,9 +131,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="binary_encoder.h" />
-    <ClInclude Include="genetic_encoder.h" />
-    <ClInclude Include="gray_encoder.h" />
+    <ClInclude Include="binary_coder.h" />
+    <ClInclude Include="genetic_coder.h" />
+    <ClInclude Include="gray_coder.h" />
     <ClInclude Include="helper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

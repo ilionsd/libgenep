@@ -13,13 +13,14 @@
 #include "genetic_code\storing\wide_code.h"
 
 //-- genetic encoders --
-#include "genetic_code\encoding\binary_encoder.h"
+#include "genetic_code\encoding\binary_coder.h"
+#include "genetic_code\encoding\gray_coder.h"
 
 
 
 //-- tests --
 #include "storage_test.h"
-#include "encoding_test.h"
+#include "coder_test.h"
 
 int main() {
 	std::cout << "Genetic Algoritm Development Programm" << std::endl;
@@ -59,11 +60,26 @@ int main() {
 
 	std::vector<unsigned char> example(3);
 	example[0] = example[1] = example[2] = 16;
-	gt::encoding_test<ge::binary_encoder<unsigned char, gs::bit_code<unsigned char>>>::known_size(3, example);
+	gt::coding_test<ge::binary_coder<unsigned char, gs::bit_code<unsigned char>>>::known_size(3, example);
+	gt::coding_test<ge::binary_coder<unsigned char, gs::wide_code<unsigned char>>>::known_size(3, example);
 
-	unsigned dimSize = 10;
-	std::vector<unsigned int> vec = gt::encoding_test<ge::binary_encoder<unsigned int, gs::bit_code<unsigned char>>>::dimPointsRandom(5, dimSize);
-	gt::encoding_test<ge::binary_encoder<unsigned int, gs::bit_code<unsigned char>>>::known_size(3, vec);
+	unsigned dimSize = 21;
+	std::vector<unsigned int> vec = gt::coding_test<ge::binary_coder<unsigned int, gs::bit_code<unsigned char>>>::dimPointsRandom(5, dimSize);
+	gt::coding_test<ge::binary_coder<unsigned int, gs::bit_code<unsigned char>>>::known_size(3, vec);
+	gt::coding_test<ge::binary_coder<unsigned int, gs::bit_code<unsigned int>>>::known_size(3, vec);
+	gt::coding_test<ge::binary_coder<unsigned int, gs::bit_code<unsigned long long>>>::known_size(3, vec);
+
+	gt::coding_test<ge::binary_coder<unsigned int, gs::wide_code<unsigned char>>>::known_size(3, vec);
+
+
+	gt::coding_test<ge::gray_coder<unsigned char, gs::bit_code<unsigned char>>>::known_size(3, example);
+	gt::coding_test<ge::gray_coder<unsigned char, gs::wide_code<unsigned char>>>::known_size(3, example);
+
+	gt::coding_test<ge::gray_coder<unsigned int, gs::bit_code<unsigned char>>>::known_size(3, vec);
+	gt::coding_test<ge::gray_coder<unsigned int, gs::bit_code<unsigned int>>>::known_size(3, vec);
+	gt::coding_test<ge::gray_coder<unsigned int, gs::bit_code<unsigned long long>>>::known_size(3, vec);
+
+	gt::coding_test<ge::gray_coder<unsigned int, gs::wide_code<unsigned char>>>::known_size(3, vec);
 
 
 	std::system("pause");

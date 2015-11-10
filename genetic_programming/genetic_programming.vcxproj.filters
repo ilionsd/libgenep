@@ -23,7 +23,7 @@
     <ClInclude Include="storage_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="encoding_test.h">
+    <ClInclude Include="coder_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
