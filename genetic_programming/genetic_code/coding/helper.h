@@ -3,7 +3,7 @@
 #include <vector>
 
 namespace genetic {
-	namespace encoding {
+	namespace coding {
 		template<typename T>
 		struct helper {
 			template<int base>

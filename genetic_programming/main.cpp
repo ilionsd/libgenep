@@ -13,8 +13,8 @@
 #include "genetic_code\storing\wide_code.h"
 
 //-- genetic encoders --
-#include "genetic_code\encoding\binary_coder.h"
-#include "genetic_code\encoding\gray_coder.h"
+#include "genetic_code\coding\binary_coder.h"
+#include "genetic_code\coding\gray_coder.h"
 
 
 
@@ -56,7 +56,7 @@ int main() {
 	gt::storage_test<gs::wide_code<unsigned long long>>::random_size((unsigned)time(NULL), minSize, maxSize);
 
 
-	namespace ge = genetic::encoding;
+	namespace ge = genetic::coding;
 
 	std::vector<unsigned char> example(3);
 	example[0] = example[1] = example[2] = 16;

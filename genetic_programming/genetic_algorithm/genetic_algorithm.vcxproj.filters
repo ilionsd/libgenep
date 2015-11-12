@@ -18,16 +18,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="helper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="genetic_coder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="binary_coder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gray_coder.h">
+    <ClInclude Include="environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

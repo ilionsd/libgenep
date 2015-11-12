@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef _GENETIC_CODER_
+#define _GENETIC_CODER_
+
 #include <cmath>
 #include <vector>
 #include <cstdlib>
@@ -9,7 +12,7 @@
 #include "../../genetic_traits/genetic_traits.h"
 
 namespace genetic {
-	namespace encoding {
+	namespace coding {
 		template<typename _Tsource, typename _Tstorage>
 		class genetic_coder 
 		{
@@ -79,5 +82,7 @@ namespace genetic {
 			std::vector<codesize_t> mDimCodeSize;
 			codesize_t codeAllocSize;
 		};
-	}; //-- namespace encoding --
+	}; //-- namespace coding --
 }; //-- namespace genetic --
+
+#endif //-- _GENETIC_CODER --
