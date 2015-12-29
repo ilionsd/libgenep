@@ -11,14 +11,44 @@ namespace genetic {
 		template<typename _Tcoder>
 		class environment {
 		public:
+
 			using coder_t = _Tcoder;
 			using code_t = coder_t::storage_t;
+
+			using individuals_t = std::vector<code_t>;
+			using individuals_ref_t = std::vector<size_t>;
+
+			using fitness = double;
+			using fitnesses = std::vector<fitness>;
+
+			static environment initialization() {
+				return environment();
+			};
+
+			environment& selection() {
+				return *this;
+			};
+
+			environment& crossover() {
+				return *this;
+			};
+
+			environment& mutation() {
+				return *this;
+			};
+
+			environment& reduction() {
+				return *this;
+			};
+
+
+
 
 		
 
 		private:
 			//-- Initialization --
-			//	initial population count
+			//	initial population size
 
 			//-- Selection --
 			//	population
@@ -32,12 +62,12 @@ namespace genetic {
 			//-- Terminate condition --
 
 
-			unsigned int initialPopulationSize;
+			size_t initialPopulationSize;
 
 			
-
+			std::vector<double> fitness;
 			std::vector<code_t> population;
-		};
+		}; //-- class environment --
 	}; //-- namespace algorithm --
 }; //-- namespace genetic --
 
