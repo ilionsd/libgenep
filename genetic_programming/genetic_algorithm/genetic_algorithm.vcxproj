@@ -134,10 +134,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="context.h" />
     <ClInclude Include="param.h" />
     <ClInclude Include="params.h" />
     <ClInclude Include="environment.h" />
-    <ClInclude Include="function.h" />
     <ClInclude Include="genetic_algorithm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

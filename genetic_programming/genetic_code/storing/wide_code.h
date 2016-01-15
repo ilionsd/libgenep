@@ -59,10 +59,19 @@ namespace genetic {
 			using nucleotide_ref = typename base_t::nucleotide_ref;
 
 
-			wide_code(const codesize_t& codeSize) :
+			wide_code(const codesize_t &codeSize) :
 				genetic_code(codeSize), 
 				mCode(codeSize)
 			{};
+
+			template<typename T1, typename T2>
+			wide_code(const genetic_code<T1, T2> &other) :
+				genetic_code(other),
+				mCode(bit_code<container_t>::element_size(other.size()))
+			{
+				for (codesize_t k = 0; k < size(); ++k)
+					operator[](k) = other[k];
+			};
 
 			nucleotide_cref operator[] (const codesize_t &index) const override {
 				nucleotide_cref cRef(mCode[index]);
@@ -71,6 +80,12 @@ namespace genetic {
 			nucleotide_ref operator[] (const codesize_t &index) override {
 				nucleotide_ref ref(mCode[index]);
 				return ref;
+			};
+
+		protected:
+			inline virtual void resize(const codesize_t &codeSize) {
+				base_t::resize(codeSize);
+				mCode.resize(codeSize);
 			};
 			
 		private:

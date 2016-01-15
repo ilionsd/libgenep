@@ -88,6 +88,15 @@ namespace genetic {
 				mCode(bit_code<container_t>::element_size(codeSize))
 			{};
 
+			template<typename T1, typename T2>
+			bit_code(const genetic_code<T1, T2> &other) :
+				genetic_code(other),
+				mCode(bit_code<container_t>::element_size(other.size()))
+			{
+				for (codesize_t k = 0; k < size(); ++k)
+					operator[](k) = other[k];
+			};
+
 			virtual nucleotide_cref operator[] (const codesize_t &index) const override
 			{
 				size_t elementIndex = index / container<container_t>::bit_size;
@@ -102,6 +111,12 @@ namespace genetic {
 				nucleotide_ref ref(mCode[elementIndex], bitIndex);
 				return ref;
 			};
+
+		protected:
+			inline virtual void resize(const codesize_t &codeSize) override {
+				base_t::resize(codeSize);
+				mCode.resize(bit_code<container_t>::element_size(codeSize));
+			};
 		
 		private:
 			inline static size_t element_size(const codesize_t& codeSize) 
@@ -111,6 +126,8 @@ namespace genetic {
 			};
 
 			std::vector<container_t> mCode;
+
+			
 		}; //-- class bit_code<T> --
 	}; //-- namespace storing --
 }; //-- namespace genetic --

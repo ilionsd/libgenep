@@ -4,7 +4,7 @@
 #include <map>
 #include <vector>
 
-#include "function.h"
+#include "context.h"
 
 
 namespace genetic {
@@ -19,25 +19,27 @@ namespace genetic {
 			using individuals_ref_t = std::vector<size_t>;
 
 		private:
+			context context;
+
 			//-- Initialization --
 			//	initial population count
-			function<individuals_t, size_t> initializer;
+			std::function< individuals_t( size_t ) > initializer;
 
 			//-- Selection --
 			//	Fitness function evaluations
-			function<individuals_ref_t, std::vector<double>> selector;
+			std::function< individuals_ref_t( std::vector<double> ) > selector;
 
 			//-- Crossover --
-			function<individuals_t, individuals_ref_t> crossover;
+			std::function< individuals_t( individuals_ref_t ) > crossover;
 
 			//-- Mutation --
-			function<individuals_t, individuals_ref_t> mutator;
+			std::function< individuals_t( individuals_ref_t ) > mutator;
 
 			//-- Reduction --
-			function<void, individuals_t> reductor;
+			std::function< void( individuals_t ) > reductor;
 
 			//-- Terminate condition --
-			function<bool, void> terminator;
+			std::function< bool( void ) > terminator;
 
 
 

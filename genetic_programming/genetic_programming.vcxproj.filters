@@ -26,5 +26,8 @@
     <ClInclude Include="coder_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="simple_ga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

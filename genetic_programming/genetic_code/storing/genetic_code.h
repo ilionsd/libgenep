@@ -5,12 +5,14 @@
 
 
 #include <vector>
+#include <algorithm>
+#include <stdexcept>
 
 #include "utility.h"
 
 namespace genetic {
-
 	namespace storing {
+
 		template<typename _Tcontainer, typename _Treference_property>
 		class genetic_code 
 		{
@@ -27,6 +29,10 @@ namespace genetic {
 
 			explicit genetic_code(const codesize_t &codeSize) :
 				mCodeSize(codeSize)
+			{};
+			template<typename T1, typename T2>
+			genetic_code(const genetic_code<T1, T2> &other) :
+				mCodeSize(other.size())
 			{};
 
 			virtual nucleotide_cref operator[] (const codesize_t &index) const = 0;
@@ -46,7 +52,21 @@ namespace genetic {
 			inline codesize_t size() {
 				return mCodeSize;
 			};
-			
+
+			template<typename T1, typename T2>
+			genetic_code<container_t, reference_property>& operator=(const genetic_code<T1, T2> &other) {
+				if (size() > other.size())
+					resize(other.size());
+				for (codesize_t k = 0; k < size(); ++k)
+					operator[](k) = other[k];
+				return (*this);
+			};
+
+		protected:
+			inline virtual void resize(const codesize_t &codeSize) {
+				mCodeSize = codeSize;
+			};
+
 		private:
 			codesize_t mCodeSize;
 		};

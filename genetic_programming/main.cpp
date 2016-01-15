@@ -6,6 +6,7 @@
 #include <vector>
 #include <cassert>
 #include <string>
+#include <memory>
 
 
 //-- genetic codes --
@@ -85,3 +86,5 @@ int main() {
 	std::system("pause");
 	return 0;
 };
+
+

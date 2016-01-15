@@ -135,6 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="binary_coder.h" />
+    <ClInclude Include="coder.h" />
+    <ClInclude Include="combiner.h" />
     <ClInclude Include="genetic_coder.h" />
     <ClInclude Include="gray_coder.h" />
     <ClInclude Include="helper.h" />

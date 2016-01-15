@@ -10,11 +10,12 @@
 
 #include "../storing/genetic_code.h"
 #include "../../genetic_traits/genetic_traits.h"
+#include "coder.h"
 
 namespace genetic {
 	namespace coding {
 		template<typename _Tsource, typename _Tstorage>
-		class genetic_coder 
+		class genetic_coder : public coder<std::vector<_Tsource>, _Tstorage>
 		{
 			/*static_assert(is_base_of_template_t<storing::genetic_code, _Tstorage>::value,
 				"Storage should be derived from genetic_code");*/
@@ -50,8 +51,8 @@ namespace genetic {
 				return mDimCodeSize.size();
 			};
 
-			virtual storage_t encode(const std::vector<source_t> &point) const = 0;
-			virtual std::vector<source_t> decode(const storage_t &code) const = 0;
+			virtual storage_t encode(const std::vector<source_t> &point) const override = 0;
+			virtual std::vector<source_t> decode(const storage_t &code) const override = 0;
 
 		protected:
 			explicit genetic_coder(const std::vector<codesize_t> dimCodeSizes) :
@@ -74,8 +75,8 @@ namespace genetic {
 
 		private:
 			inline static codesize_t get_code_size(const source_t &pointsNumber) {
-				double logPointsNumber = log2(pointsNumber);
-				double ceilPointsNumber = ceil(logPointsNumber);
+				double log2PointsNumber = log2(pointsNumber);
+				double ceilPointsNumber = ceil(log2PointsNumber);
 				return static_cast<codesize_t>(ceilPointsNumber);
 			};
 
