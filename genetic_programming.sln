@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "genetic_algorithm", "geneti
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coding", "genetic_programming\genetic_code\coding\coding.vcxproj", "{861A3AC6-F308-4FA6-8297-B57ACEA77F83}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utility", "utility\utility.vcxproj", "{677FE30A-1978-4328-96D3-48B9FC74858D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -81,6 +83,18 @@ Global
 		{861A3AC6-F308-4FA6-8297-B57ACEA77F83}.Release|Win32.Build.0 = Release|Win32
 		{861A3AC6-F308-4FA6-8297-B57ACEA77F83}.Release|x64.ActiveCfg = Release|x64
 		{861A3AC6-F308-4FA6-8297-B57ACEA77F83}.Release|x64.Build.0 = Release|x64
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Debug|Win32.Build.0 = Debug|Win32
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Debug|x64.ActiveCfg = Debug|x64
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Debug|x64.Build.0 = Debug|x64
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Release|Win32.ActiveCfg = Release|Win32
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Release|Win32.Build.0 = Release|Win32
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Release|x64.ActiveCfg = Release|x64
+		{677FE30A-1978-4328-96D3-48B9FC74858D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

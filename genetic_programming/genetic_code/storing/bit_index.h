@@ -22,24 +22,18 @@ namespace genetic {
 				"Template should be specialized by unsigned integer type");
 
 		public:
-			using bitsize_t = size_t;
-
-			bit_index() :
-				m_index(0)
-			{};
-
-			bit_index(const bitsize_t &index) {
+			bit_index(const size_t index) {
 				if (index < container<_Tcontainer>::bit_size && index >= 0)
-					m_index = index;
+					index_ = index;
 				else {
-					std::ostringstream error_message;
-					error_message << "value should be in [0; " << std::to_string(container<_Tcontainer>::bit_size) << "], given " << std::to_string(index);
-					throw std::out_of_range(error_message.str());
+					std::ostringstream errorMessage;
+					errorMessage << "value should be in [0; " << std::to_string(container<_Tcontainer>::bit_size) << "], given " << std::to_string(index);
+					throw std::out_of_range(errorMessage.str());
 				}
 			};
 
-			inline operator bitsize_t() const {
-				return m_index;
+			inline operator size_t() const {
+				return index_;
 			};
 
 			inline bool operator==(const bit_index<_Tcontainer> &other) const {
@@ -50,7 +44,7 @@ namespace genetic {
 			};
 
 		private:
-			bitsize_t m_index;
+			size_t index_;
 		};
 
 	}; //-- namespace primitive --

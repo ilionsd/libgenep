@@ -46,24 +46,7 @@ namespace genetic {
 	//using is_base_of_any = typename decltype(detail::is_base_of_any_helper<C>{}(std::declval<const T*>()));
 
 
-	//-- http://coliru.stacked-crooked.com/a/eaeac2b9008a97d9 begin--
-
-	template <template <typename...> class Base, typename Derived>
-	struct is_base_of_template {
-		using U = typename std::remove_cv<Derived>::type;
-
-		template <typename... Args>
-		static std::true_type test(Base<Args...>*);
-
-		static std::false_type test(void*);
-
-		using type = decltype(test(std::declval<U*>()));
-	};
-
-	template <template <typename...> class Base, typename Derived>
-	using is_base_of_template_t = typename is_base_of_template<Base, Derived>::type;
-
-	//-- http://coliru.stacked-crooked.com/a/eaeac2b9008a97d9 end --
+	
 
 
 };
