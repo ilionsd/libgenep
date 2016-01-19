@@ -36,5 +36,8 @@
     <ClInclude Include="bit_index.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="genetic_code1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

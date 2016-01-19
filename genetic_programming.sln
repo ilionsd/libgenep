@@ -13,7 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "genetic_algorithm", "geneti
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coding", "genetic_programming\genetic_code\coding\coding.vcxproj", "{861A3AC6-F308-4FA6-8297-B57ACEA77F83}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utility", "utility\utility.vcxproj", "{677FE30A-1978-4328-96D3-48B9FC74858D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "utility", "genetic_programming\utility\utility.vcxproj", "{677FE30A-1978-4328-96D3-48B9FC74858D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

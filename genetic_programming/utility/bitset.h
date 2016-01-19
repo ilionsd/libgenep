@@ -11,9 +11,9 @@
 #include <algorithm>
 #include <stdexcept>
 #include <string>
-//#include <malloc.h>
 
 #include "type_traits.h"
+#include "reference.h"
 
 namespace genetic {
 	namespace utility {
@@ -127,8 +127,9 @@ namespace genetic {
 				return get(index);
 			};
 
-			inline reference operator[] (const size_t index) {
-				return reference(*this, index);
+			inline ref<bit> operator[] (const size_t index) {
+				utility::set<bit> set = [index](bit value) -> void {set(index, value)};
+				return ref<bit>(set);
 			};
 
 			inline bit at(const size_t index) const {
@@ -137,7 +138,7 @@ namespace genetic {
 				return operator[](index);
 			};
 
-			inline reference at(const size_t index) {
+			inline ref<bit> at(const size_t index) {
 				if (index >= size())
 					throw std::out_of_range(std::to_string(index) + " out of range [0; " + std::to_string(size()) + "]");
 				return operator[](index);
