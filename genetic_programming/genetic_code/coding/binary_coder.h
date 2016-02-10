@@ -13,33 +13,25 @@
 
 namespace genetic {
 	namespace coding {
-		template<typename _Tsource, typename _Tstorage>
 		class binary_coder : 
-			public genetic_coder<_Tsource, _Tstorage> 
+			public genetic_coder
 		{
 		public:
-			using base_t = genetic_coder<_Tsource, _Tstorage>;
-			using source_t = typename base_t::source_t;
-			using storage_t = typename base_t::storage_t;
-
-			using container_t = typename storage_t::container_t;
-			using codesize_t = typename base_t::codesize_t;
-
-			inline binary_coder(const std::vector<source_t> &pointNumbers) :
-				genetic_coder(pointNumbers)
+			inline binary_coder(const std::vector<number> &pointsNumber) :
+				genetic_coder(pointsNumber)
 			{};
-			inline binary_coder(const unsigned int &spaceSize, const source_t &pointsNumber) :
+			inline binary_coder(const size_t spaceSize, const number pointsNumber) :
 				genetic_coder(spaceSize, pointsNumber)
 			{};
 
-			virtual storage_t encode(const std::vector<source_t> &points) const override {
-				container_t rem;
-				source_t div;
-				storage_t code(code_alloc_size());
-				codesize_t base = 0;
+			virtual bit_code encode(const std::vector<number> &points) const override {
+				number rem;
+				number div;
+				bit_code code(code_alloc_size());
+				size_t base = 0;
 				for (size_t dim = 0; dim < space_size(); ++dim) {
 					div = points[dim];
-					for (codesize_t bitIndex = 0; div != 0 && bitIndex < code_size(dim); ++bitIndex) {
+					for (size_t bitIndex = 0; div != 0 && bitIndex < code_size(dim); ++bitIndex) {
 						rem = div % 2;
 						div /= 2;
 						code[base + bitIndex] = rem;
@@ -48,23 +40,20 @@ namespace genetic {
 				}
 				return code;
 			};
-			virtual std::vector<source_t> decode(const storage_t &code) const override {
-				std::vector<source_t> points(space_size());
-				codesize_t maxCodeSize = 0;
+			virtual std::vector<number> decode(const bit_code &code) const override {
+				std::vector<number> points(space_size());
+				size_t maxCodeSize = 0;
 				for (size_t dim = 0; dim < space_size(); ++dim)
 					if (maxCodeSize < code_size(dim))
 						maxCodeSize = code_size(dim);
-				std::vector<source_t> power_list = helper<source_t>::pow_vector<2>(maxCodeSize);
-				codesize_t nucleotideIndex = 0;
-				codesize_t base = 0;
-				source_t point;
-				typename storage_t::nucleotide_t::source_t sourceVal;
+				std::vector<number> power_list = helper<number>::pow_vector<2>(maxCodeSize);
+				size_t nucleotideIndex = 0;
+				size_t base = 0;
+				number point;
 				for (size_t dim = 0; dim < space_size(); ++dim) {
 					point = 0;
-					for (codesize_t bitIndex = 0; bitIndex < code_size(dim); ++bitIndex) {
-						typename storage_t::nucleotide_t nucleotideVal = code[base + bitIndex];
-						sourceVal = nucleotideVal;
-						point += static_cast<source_t>(sourceVal) * power_list[bitIndex];
+					for (size_t bitIndex = 0; bitIndex < code_size(dim); ++bitIndex) {
+						point += static_cast<number>(code[base + bitIndex]) * power_list[bitIndex];
 					}
 					base += code_size(dim);
 					points[dim] = point;

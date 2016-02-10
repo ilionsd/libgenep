@@ -131,13 +131,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bit_code.h" />
-    <ClInclude Include="bit_index.h" />
     <ClInclude Include="genetic_code.h" />
-    <ClInclude Include="genetic_code1.h" />
-    <ClInclude Include="nucleotide.h" />
-    <ClInclude Include="utility.h" />
-    <ClInclude Include="wide_code.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

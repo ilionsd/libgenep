@@ -20,13 +20,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="storage_test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="coder_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simple_ga.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="code_test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="typedefs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

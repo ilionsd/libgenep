@@ -139,6 +139,7 @@
     <ClInclude Include="params.h" />
     <ClInclude Include="environment.h" />
     <ClInclude Include="genetic_algorithm.h" />
+    <ClInclude Include="space.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

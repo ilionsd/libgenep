@@ -1,15 +1,19 @@
 #pragma once
 
+#ifndef _GENETIC_CODING_CODER_
+#define _GENETIC_CODING_CODER_
 
 namespace genetic {
 	namespace coding {
-		template<typename _Tsrc, typename _Tdst>
+		template<typename _Src, typename _Dst>
 		class coder {
 		public:
-			using source_t = _Tsrc;
-			using destination_t = _Tdst;
-			virtual destination_t encode(const source_t &source) const = 0;
-			virtual source_t decode(const destination_t &code) const = 0;
+			using src = _Src;
+			using dst = _Dst;
+			virtual dst encode(const src &) const = 0;
+			virtual src decode(const dst &) const = 0;
 		};
 	};
 };
+
+#endif

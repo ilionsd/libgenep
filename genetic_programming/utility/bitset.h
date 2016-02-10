@@ -8,6 +8,7 @@
 #define _GENETIC_UTILITY_BITSET_
 
 
+#include <cstdint>
 #include <algorithm>
 #include <stdexcept>
 #include <string>
@@ -17,6 +18,12 @@
 
 namespace genetic {
 	namespace utility {
+
+		template<typename T> class bitset_t;
+
+		using bitset = bitset_t<unsigned char>;
+
+
 
 		template<typename T>
 		struct enable_if_integral {
@@ -34,8 +41,8 @@ namespace genetic {
 				value_(convert(value))
 			{};
 
-			template<typename T>
-			operator enable_if_integral<T>::type() const {
+			template<typename T, typename = enable_if_integral<T>::type>
+			operator T() const {
 				return static_cast<T>(value_);
 			};
 
@@ -45,13 +52,13 @@ namespace genetic {
 			};
 		private:
 			template<typename T>
-			inline static unsigned __int8 convert(T value) {
+			inline static std::uint8_t convert(T value) {
 				return (value) ? one_ : zero_;
 			};
-			unsigned __int8 value_;
+			std::uint8_t value_;
 
-			const static unsigned __int8 zero_	= 0;
-			const static unsigned __int8 one_	= 1;
+			const static std::uint8_t zero_	= 0;
+			const static std::uint8_t one_	= 1;
 		};	//-- class bit --
 
 		const bit bit::zero(bit::zero_);
@@ -184,7 +191,7 @@ namespace genetic {
 		};	//-- class bitset_t --
 
 
-		using bitset = bitset_t<char>;
+		
 	};	//-- namespace containers --
 };	//-- namespace utility --
 

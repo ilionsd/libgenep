@@ -136,10 +136,10 @@
   <ItemGroup>
     <ClInclude Include="binary_coder.h" />
     <ClInclude Include="coder.h" />
-    <ClInclude Include="combiner.h" />
     <ClInclude Include="genetic_coder.h" />
     <ClInclude Include="gray_coder.h" />
     <ClInclude Include="helper.h" />
+    <ClInclude Include="numeric_coder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

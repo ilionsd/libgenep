@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "genetic_programming", "gene
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "storing", "genetic_programming\genetic_code\storing\storing.vcxproj", "{3D828822-1DC2-4E32-B6A5-5D2D5F4E5DD3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "genetic_traits", "genetic_programming\genetic_traits\genetic_traits.vcxproj", "{A5965011-5423-4BB8-94CA-9B107ACE91B9}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "genetic_algorithm", "genetic_programming\genetic_algorithm\genetic_algorithm.vcxproj", "{9D8A8027-637A-4FED-8C15-85CB49B7FC48}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coding", "genetic_programming\genetic_code\coding\coding.vcxproj", "{861A3AC6-F308-4FA6-8297-B57ACEA77F83}"
@@ -48,17 +46,6 @@ Global
 		{3D828822-1DC2-4E32-B6A5-5D2D5F4E5DD3}.Release|Win32.ActiveCfg = Release|Win32
 		{3D828822-1DC2-4E32-B6A5-5D2D5F4E5DD3}.Release|Win32.Build.0 = Release|Win32
 		{3D828822-1DC2-4E32-B6A5-5D2D5F4E5DD3}.Release|x64.ActiveCfg = Release|Win32
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Debug|Win32.ActiveCfg = Debug|Win32
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Debug|Win32.Build.0 = Debug|Win32
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Debug|x64.ActiveCfg = Debug|x64
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Debug|x64.Build.0 = Debug|x64
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Release|Win32.ActiveCfg = Release|Win32
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Release|Win32.Build.0 = Release|Win32
-		{A5965011-5423-4BB8-94CA-9B107ACE91B9}.Release|x64.ActiveCfg = Release|Win32
 		{9D8A8027-637A-4FED-8C15-85CB49B7FC48}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{9D8A8027-637A-4FED-8C15-85CB49B7FC48}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{9D8A8027-637A-4FED-8C15-85CB49B7FC48}.Debug|Win32.ActiveCfg = Debug|Win32
