@@ -6,39 +6,21 @@
 #include <random>
 
 #include "genetic_code\storing\genetic_code.h"
+#include "genetic_algorithm\space.h"
 
 
 namespace genetic {
-	namespace algorithm {
-		struct interval {
-			double left, right;
-		};
 
-		
-
-		template<typename _Tcode>
 		class simple {
 		public:
-			using code_t = _Tcode;
-			using code_ptr = std::shared_ptr<code_t>;
-
-			class space_params {
-				//-- space params --
-				std::vector<interval> spaceBounds;
-			};
-
-			class params {
-			public:
-				
+			struct params {
+				algotithm::space space;
 
 
 
 				//-- algorithm params --
 				size_t initialPopulationSize;
 				size_t maxPopulationSize;
-
-				std::function<code_t(std::vector<double>)> encoder;
-				std::function<std::vector<double>(code_t)> decoder;
 
 				std::function<double(std::vector<double>)> fitnessFunction;
 
@@ -79,6 +61,7 @@ namespace genetic {
 			params params;
 
 			std::vector<code_ptr> individuals;
-		};
-	};
-};
+
+		};	//-- class simple_ga --
+
+};	//-- namespace genetic --

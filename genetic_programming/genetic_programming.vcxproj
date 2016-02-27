@@ -142,9 +142,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="coder_test.h" />
+    <ClInclude Include="test_coder.h" />
     <ClInclude Include="simple_ga.h" />
-    <ClInclude Include="code_test.h" />
+    <ClInclude Include="test_code.h" />
     <ClInclude Include="typedefs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

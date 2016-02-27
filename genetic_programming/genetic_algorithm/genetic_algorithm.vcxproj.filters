@@ -24,15 +24,6 @@
     <ClInclude Include="genetic_algorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="params.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="param.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="space.h">
       <Filter>Header Files</Filter>
     </ClInclude>

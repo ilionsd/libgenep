@@ -49,7 +49,8 @@ namespace genetic {
 			private:
 				number points_number_;
 				double interval_size_;
-			};
+
+			};	//-- class splitting --
 
 			using splitting_t = splitting;
 
@@ -97,11 +98,10 @@ namespace genetic {
 			};
 
 		private:
-
 			double left_bound_;
 			double right_bound_;
-
 			splitting_t splitting_;
+
 		};	//-- class dimension --
 
 		
@@ -140,7 +140,7 @@ namespace genetic {
 		private:
 			std::vector<dimension> dimentions_;
 
-		};
+		};	//-- class space --
 
 
 		template<typename T>
@@ -168,7 +168,8 @@ namespace genetic {
 		private:
 			std::vector<std::uniform_real_distribution> distributions_;
 			T engine_;
-		};
+
+		};	//-- class generator --
 
 
 	};	//-- namespace algorithm --

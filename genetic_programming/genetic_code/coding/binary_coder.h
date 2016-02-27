@@ -47,11 +47,9 @@ namespace genetic {
 					if (maxCodeSize < code_size(dim))
 						maxCodeSize = code_size(dim);
 				std::vector<number> power_list = helper<number>::pow_vector<2>(maxCodeSize);
-				size_t nucleotideIndex = 0;
 				size_t base = 0;
-				number point;
 				for (size_t dim = 0; dim < space_size(); ++dim) {
-					point = 0;
+					number point = 0;
 					for (size_t bitIndex = 0; bitIndex < code_size(dim); ++bitIndex) {
 						point += static_cast<number>(code[base + bitIndex]) * power_list[bitIndex];
 					}
